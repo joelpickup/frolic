@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210164515) do
+ActiveRecord::Schema.define(version: 20150210170331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20150210164515) do
   create_table "categories_users", id: false, force: true do |t|
     t.integer "category_id"
     t.integer "user_id"
+  end
+
+  create_table "date_options", force: true do |t|
+    t.integer  "meetup_id"
+    t.date     "date"
+    t.boolean  "chosen"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "invitations", force: true do |t|

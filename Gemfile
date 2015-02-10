@@ -42,6 +42,7 @@ gem "haml-rails", "~> 0.8"
 gem 'bullet', :group => "development"
 gem 'geocoder'
 
+
 #TESTING GEMS
 group :development, :test do
   gem 'pry-rails'

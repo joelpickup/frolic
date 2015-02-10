@@ -6,4 +6,5 @@ class Meetup < ActiveRecord::Base
   has_many :hosts, through: :host_invites, :source => :user
   has_one :superhost_invite, -> {where role: "superhost"}, class_name: "Invitation"
   has_one :superhost, through: :superhost_invite, :source => :user
+  has_many :date_options
 end
