@@ -69,6 +69,7 @@ GEM
     execjs (2.3.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    geocoder (1.2.7)
     haml (4.0.6)
       tilt
     haml-rails (0.8.2)
@@ -210,6 +211,7 @@ DEPENDENCIES
   cancancan
   coffee-rails (~> 4.0.0)
   devise
+  geocoder
   haml-rails (~> 0.8)
   jbuilder (~> 2.0)
   jquery-rails
