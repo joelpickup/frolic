@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lat: 1.5
+  long: 1.5
+  venue_name: MyString
+  venue_id: 
+  event_name: MyString
+  event_id: 
+  meetup_id: 
+  event_description: MyText
+  user_id: 
+
+two:
+  lat: 1.5
+  long: 1.5
+  venue_name: MyString
+  venue_id: 
+  event_name: MyString
+  event_id: 
+  meetup_id: 
+  event_description: MyText
+  user_id: 
