@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   belongs_to :work, class_name: "Location"
   has_many :invitations
   has_many :meetups, through: :invitations
+  has_and_belongs_to_many :interests, class_name: "Category"
 end
