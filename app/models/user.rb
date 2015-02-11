@@ -9,4 +9,14 @@ class User < ActiveRecord::Base
   has_many :invitations
   has_many :meetups, through: :invitations
   has_and_belongs_to_many :interests, class_name: "Category"
+
+
+
+
+  def organise_meetup(attrs={})
+    Meetup.create(attrs) do |meetup|
+      meetup.invitations.new(user: self, role: :superhost, status: :accepted)
+    end
+  end
+
 end
