@@ -213,6 +213,7 @@ DEPENDENCIES
   devise
   geocoder
   haml-rails (~> 0.8)
+  html2haml
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-facebook

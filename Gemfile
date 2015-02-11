@@ -39,6 +39,7 @@ gem 'omniauth-facebook'
 #GENERAL 
 gem 'bourbon'
 gem "haml-rails", "~> 0.8"
+gem "html2haml"
 gem 'bullet', :group => "development"
 gem 'geocoder'
 

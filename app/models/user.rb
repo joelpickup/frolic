@@ -24,4 +24,7 @@ class User < ActiveRecord::Base
     meetups.select{|meetup| meetup.superhost == self}
   end
 
+  def meetups_as_host
+    meetups.select{|meetup| meetup.host == self}
+  end
 end
