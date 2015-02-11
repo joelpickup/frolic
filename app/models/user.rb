@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :invitations
   has_many :meetups, through: :invitations
   has_and_belongs_to_many :interests, class_name: "Category"
+  after_destroy :cleanup
 
 
 
@@ -17,6 +18,10 @@ class User < ActiveRecord::Base
     Meetup.create(attrs) do |meetup|
       meetup.invitations.new(user: self, role: :superhost, status: :accepted)
     end
+  end
+
+  def meetups_as_superhost
+    meetups.select{|meetup| meetup.superhost == self}
   end
 
 end
