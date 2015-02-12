@@ -1,0 +1,38 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.required label:after {
+  content: "*"
+}
+
+.required {
+  input:not([type="submit"]):valid:focus,
+  textarea:valid:focus {
+    box-shadow: 0 0 10px rgba(101, 169, 10, 0.8);
+    outline:0;
+  }
+  input:not([type="submit"]):invalid:focus,
+  textarea:invalid:focus {
+    box-shadow: 0 0 10px rgba(204, 63, 133, 0.8);
+    outline:none;
+  }
+  .first_name:focus:invalid ~ span:after {
+    content:"Please enter your first name";
+  }
+  .surname:focus:invalid ~ span:after {
+    content:"Please enter your surname";
+  }
+  input[type="email"]:focus:invalid ~ span:after {
+    content:"Please enter a valid email";
+  }
+  input[type="password"]:focus:invalid ~ span:after {
+    content:"Please enter a password over 8 chars long with at least one capital letter.";
+  }
+
+  input:focus:valid ~ span:after,
+  textarea:focus:valid ~ span:after {
+    content:"Perfect, thanks!";
+  }
+
+  
+}

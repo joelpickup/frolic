@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :invitations
   has_many :meetups, through: :invitations
   has_and_belongs_to_many :interests, class_name: "Category"
-  after_destroy :cleanup
+  # after_destroy :cleanup
 
 
 
