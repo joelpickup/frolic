@@ -4,14 +4,22 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Frolic
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    / = stylesheet_link_tag    'home', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    %p=notice
+    #p=alert
     #login
     - if current_user
       = current_user.email
+      = link_to "Organise Meetup", '#'
+      = link_to "Meetups / Events", '#'
+      = link_to "My Account", '#'
       = link_to "Log out", destroy_user_session_path, method: :delete
     - else
-      = link_to "Sign In", new_user_session_path
-      = link_to "Register", new_user_registration_path
+      = link_to "About", '#'
+      = link_to "Facebook", '#'
+      = link_to "Twitter", '#'
+
     =yield
