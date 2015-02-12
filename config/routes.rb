@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#home"
   get '/dashboard' => 'dashboard#show'
+  get '/users.json' => 'users#load_users'
 
   resources :meetups
   # The priority is based upon order of creation: first created -> highest priority.

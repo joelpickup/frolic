@@ -1,4 +1,11 @@
-= form_tag(meetups_path) do
-  %input{:type => "text"}
-  %input{:type => "text"}
-  %input{:type => "submit"}/
+= form_for @meetup do |f|
+  =f.text_field :name, placeholder: "Name"
+  %br/
+  =f.text_area :description, placeholder: "description"
+  %br/
+  %input{:type => "text", :class =>"typeahead"}/
+  =f.submit value: "Create!"
+
+
+#the-basics
+  %input{:class => "typeahead", :type => "text", :placeholder => "Users"}

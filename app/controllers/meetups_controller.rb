@@ -1,6 +1,11 @@
 class MeetupsController < ApplicationController
+  respond_to :html, :xml, :json
+
+def new
+  @meetup = Meetup.new
+end
+
 def create
-  puts "*"*1000
   redirect_to dashboard_path
 end
 end
