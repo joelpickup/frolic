@@ -42,6 +42,7 @@ gem "haml-rails", "~> 0.8"
 gem "html2haml"
 gem 'bullet', :group => "development"
 gem 'geocoder'
+gem 'neat'
 
 
 #TESTING GEMS
