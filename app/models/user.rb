@@ -11,8 +11,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :interests, class_name: "Category"
   # after_destroy :cleanup
 
-
-
+  def name
+    [first_name, surname].delete_if(&:blank?).join(' ')
+  end
 
   def organise_meetup(attrs={})
     Meetup.create(attrs) do |meetup|

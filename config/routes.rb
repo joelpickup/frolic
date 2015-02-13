@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get '/dashboard' => 'dashboard#show'
   get '/users.json' => 'users#load_users'
 
-  resources :meetups
+  resources :invitations
+
+  resources :meetups do
+    resources :invitations
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

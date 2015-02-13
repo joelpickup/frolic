@@ -44,7 +44,7 @@ gem "erb2haml"
 gem 'bullet', :group => "development"
 gem 'geocoder'
 gem 'neat'
-
+gem 'jquery-turbolinks' 
 
 #TESTING GEMS
 group :development, :test do

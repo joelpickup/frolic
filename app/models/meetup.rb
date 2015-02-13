@@ -9,5 +9,6 @@ class Meetup < ActiveRecord::Base
   has_many :date_options, dependent: :destroy
   has_many :venue_suggestions, dependent: :destroy
 
+  accepts_nested_attributes_for :invitations, allow_destroy: true
 
 end

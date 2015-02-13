@@ -1,11 +1,15 @@
-= form_for @meetup do |f|
+= form_for @meetup, :html => {:id => 'x'} do |f|
   =f.text_field :name, placeholder: "Name"
   %br/
   =f.text_area :description, placeholder: "description"
-  %br/
-  %input{:type => "text", :class =>"typeahead"}/
-  =f.submit value: "Create!"
+
+  = f.fields_for :invitations do |invitations_f|
+    = invitations_f.collection_select :user_id, User.all, :id, :name
+    = invitations_f.hidden_field :_destroy
+    = invitations_f.label :_destroy, "remove"
+  = link_to_add_invitation "Invite Another", f, :invitations  
+
+  = f.submit
 
 
-#the-basics
-  %input{:class => "typeahead", :type => "text", :placeholder => "Users"}
+  / %input{:class => "typeahead", :type => "text", :placeholder => "Users"}
