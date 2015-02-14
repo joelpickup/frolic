@@ -10,6 +10,9 @@ Rails.application.routes.draw do
  get '/dashboard' => 'dashboard#show'
  get '/users.json' => 'users#load_users'
 
+ get '/locations/:id/home' => 'users#make_home', as: 'make_user_home'
+ get '/locations/:id/work' => 'users#make_work', as: 'make_user_work'
+
  resources :invitations
  resources :locations
  resources :meetups do
