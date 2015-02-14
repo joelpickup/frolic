@@ -6,11 +6,16 @@ class LocationsController < ApplicationController
   end
 
   def create
-
+    @location = Location.new(location_params)
+    coordinates = Geocoder.coordinates(location_params[:postcode])
+    @location.lat = coordinates[0]
+    @location.long = coordinates[1]
+    @location.save
+    redirect_to @location
   end
 
   def show
-
+    @location = Location.find(params[:id])
   end
 
   private
