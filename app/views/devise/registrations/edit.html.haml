@@ -17,6 +17,10 @@
   .field
     = f.label :home
     = f.collection_select :home_id, @my_locations, :id, :name
+  .field
+    = f.label :work
+    = f.collection_select :work_id, @my_locations, :id, :name
+    = link_to "Add Location", new_location_path
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}

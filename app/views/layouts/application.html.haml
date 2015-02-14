@@ -16,7 +16,7 @@
       = link_to "Organise Meetup", new_meetup_path
       = link_to "Meetups / Events", '#'
       = link_to "frolic", dashboard_path
-      = link_to "My Account", '#'
+      = link_to "My Account", edit_user_registration_path
       = link_to "Log out", destroy_user_session_path, method: :delete
     - else
       = link_to "About", '#'

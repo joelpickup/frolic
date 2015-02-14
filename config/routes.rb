@@ -11,6 +11,7 @@ Rails.application.routes.draw do
  get '/users.json' => 'users#load_users'
 
  resources :invitations
+ resources :locations
  resources :meetups do
   resources :invitations
   end
