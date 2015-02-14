@@ -7,4 +7,8 @@ class UsersController < ApplicationController
     @users.each {|u| @users_json.push({"id" => u["id"], "first_name" => u["first_name"], "surname" => u["surname"]})}
     render json: @users_json
   end
+
+  def 
+
+  end
 end

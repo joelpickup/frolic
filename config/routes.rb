@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  root to: "home#home"
-  get '/dashboard' => 'dashboard#show'
-  get '/users.json' => 'users#load_users'
 
+  devise_for :users,
+  :controllers  => {
+   :registrations => 'my_devise/registrations',
+ }
+
+ root to: "home#home"
+ get '/dashboard' => 'dashboard#show'
+ get '/users.json' => 'users#load_users'
+
+ resources :invitations
+ resources :meetups do
   resources :invitations
-
-  resources :meetups do
-    resources :invitations
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
