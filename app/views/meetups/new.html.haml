@@ -4,9 +4,7 @@
   =f.text_area :description, placeholder: "description"
 
   = f.fields_for :invitations do |invitations_f|
-    = invitations_f.collection_select :user_id, User.all, :id, :name
-    = invitations_f.hidden_field :_destroy
-    = invitations_f.label :_destroy, "remove"
+    = render 'invitation', invitations_f: invitations_f, f: f
   = link_to_add_invitation "Invite Another", f, :invitations  
 
   = f.submit

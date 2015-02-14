@@ -28,6 +28,18 @@ $(function(){
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
     $(this).before($(this).data('fields').replace(regexp, time));
+    event.preventDefault();
+  });
+
+  $('form').on('click', '.destroy_invite', function(event){
+    $(this).prev('input[type=hidden]').val(1);
+    $(this).closest('fieldset').hide();
+    event.preventDefault();
+  });
+
+  $('form').on('change', 'select', function(event){
+    console.log("AYAYAY!");
+    event.preventDefault();
   });
 
 
