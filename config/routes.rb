@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
  resources :invitations
  resources :locations
+ resources :meetups
  resources :meetups do
   resources :invitations
   end

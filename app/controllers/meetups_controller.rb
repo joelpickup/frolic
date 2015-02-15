@@ -1,6 +1,6 @@
 class MeetupsController < ApplicationController
   respond_to :html, :xml, :json
-
+  
   def new
     @meetup = Meetup.new
     @meetup.invitations.new 
@@ -10,7 +10,10 @@ class MeetupsController < ApplicationController
     @meetup = current_user.organise_meetup(meetup_params)
     raise
     @meetup.save
+  end
 
+  def show
+    @meetup = Meetup.find(params[:id])
   end
 
   private

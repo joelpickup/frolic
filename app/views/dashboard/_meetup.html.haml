@@ -1,0 +1,5 @@
+%a{:href => "meetups/#{meetup.id}"}  
+  %div{class: "meetup", id: "meetup_" + meetup.id.to_s}
+    %h2=meetup.name
+    =meetup.description
+    =meetup.location_id
