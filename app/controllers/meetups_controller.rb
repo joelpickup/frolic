@@ -14,6 +14,10 @@ class MeetupsController < ApplicationController
 
   def show
     @meetup = Meetup.find(params[:id])
+    @attending = @meetup.guests_that_are("accepted")
+    @invited = @meetup.guests_that_are("invited")
+    @declined = @meetup.guests_that_are("declined")
+
   end
 
   private

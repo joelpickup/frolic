@@ -10,5 +10,9 @@ class Meetup < ActiveRecord::Base
   has_many :venue_suggestions, dependent: :destroy
 
   accepts_nested_attributes_for :invitations, allow_destroy: true
+  
+  def guests_that_are(status)
+    invitations.where(status: status).map{|invitation| invitation.user}
+  end
 
 end

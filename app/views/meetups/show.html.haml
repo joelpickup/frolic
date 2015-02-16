@@ -1,1 +1,13 @@
-=@meetup.name
+%h1=@meetup.name
+%h2 Info
+%p Current Favourite Date 12th Feb - 
+%h2 People
+%h3 Attending
+-@attending.each do |attendant|
+  = render 'attendant', attendant: attendant
+%h3 Invited
+-@invited.each do |attendant|
+  = render 'attendant', attendant: attendant
+%h3 Declined
+-@declined.each do |attendant|
+  = render 'attendant', attendant: attendant
