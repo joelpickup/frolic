@@ -5,9 +5,10 @@
 %p Current Favourite Date 12th Feb - 
 -if current_user == @meetup.superhost
   "You are the superhost"
+%button#event_search Find Nearby Events
 #map-canvas
 %input#pac-input
-%button#event_search Find Nearby Events
+
 %h2 People
 %h3 Attending
 -@attending.each do |attendant|
