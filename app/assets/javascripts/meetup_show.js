@@ -9,10 +9,14 @@ myMap.initialize = function() {
   };
 
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  var defaultBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(-33.8902, 151.1759),
+      new google.maps.LatLng(-33.8474, 151.2631));
+  map.fitBounds(defaultBounds);
   var input = /** @type {HTMLInputElement} */(
         document.getElementById('pac-input'));
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
+    var markers = [];
     var searchBox = new google.maps.places.SearchBox(
       /** @type {HTMLInputElement} */(input));
 
@@ -29,7 +33,7 @@ myMap.initialize = function() {
       }
 
       // For each place, get the icon, place name, and location.
-      markers = [];
+      
       var bounds = new google.maps.LatLngBounds();
       for (var i = 0, place; place = places[i]; i++) {
         var image = {
