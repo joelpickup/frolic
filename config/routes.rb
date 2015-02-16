@@ -13,6 +13,8 @@ Rails.application.routes.draw do
  get '/locations/:id/home' => 'users#make_home', as: 'make_user_home'
  get '/locations/:id/work' => 'users#make_work', as: 'make_user_work'
 
+ patch '/meetups/:id/dates' => 'meetups#add_dates', as: 'add_dates'
+
  resources :invitations
  resources :locations
  resources :meetups

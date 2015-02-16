@@ -25,8 +25,13 @@ class MeetupsController < ApplicationController
       redirect_to meetup_path
     end
   end
+  def add_dates
+    @meetup = Meetup.find(params[:id])
+    x = @meetup.add_dates(meetup_params)
+    raise
+  end
   private
   def meetup_params
-    params.require(:meetup).permit(:id, :name, :description, {:invitations_attributes => [:user_id, :_destroy]})
+    params.require(:meetup).permit(:id, :name, :description, :date_options_1, :date_options_2, :date_options_3, {:invitations_attributes => [:user_id, :_destroy]})
   end
 end
