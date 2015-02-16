@@ -25,8 +25,37 @@ class Meetup < ActiveRecord::Base
 
   def add_dates(params)
     day, number, period = params["date_options_1"], params["date_options_2"].to_i, params["date_options_3"]
-    date_options.new(date: date_of_next(day))
     end_date = calculate_end_date(period, number)
+    case day
+    when 'any day'
+      i = Date.today
+      while i < end_date 
+        date_options.new(date: i)
+        i += 1
+      end
+    when 'Weekday'
+      i = Date.today
+      while i < end_date 
+        if i.wday < 6 && i.wday > 0
+        date_options.new(date: i)
+      end
+        i += 1
+      end
+    when 'Weekend'
+      i = date_of_next("Saturday")
+      while i < end_date
+        date_options.new(date: i)
+        date_options.new(date: i+1)
+        i += 7
+      end
+    else
+      first_date = date_of_next(day)
+      i = first_date
+      while i < end_date 
+        date_options.new(date: i)
+        i += 7
+      end
+    end
   end
 
   def guests_that_are(status)
