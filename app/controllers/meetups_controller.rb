@@ -17,9 +17,14 @@ class MeetupsController < ApplicationController
     @attending = @meetup.guests_that_are("accepted")
     @invited = @meetup.guests_that_are("invited")
     @declined = @meetup.guests_that_are("declined")
-
   end
-
+  
+  def update
+    @meetup = Meetup.find(params[:id])
+    if @meetup.update_attributes(meetup_params)
+      redirect_to meetup_path
+    end
+  end
   private
   def meetup_params
     params.require(:meetup).permit(:id, :name, :description, {:invitations_attributes => [:user_id, :_destroy]})

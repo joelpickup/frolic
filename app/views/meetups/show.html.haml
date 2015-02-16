@@ -1,6 +1,8 @@
 %h1=@meetup.name
 %h2 Info
 %p Current Favourite Date 12th Feb - 
+-if current_user == @meetup.superhost
+  "You are the superhost"
 %h2 People
 %h3 Attending
 -@attending.each do |attendant|
@@ -11,3 +13,7 @@
 %h3 Declined
 -@declined.each do |attendant|
   = render 'attendant', attendant: attendant
+- if current_user == @meetup.superhost || @meetup.host
+  =form_for @meetup do |f|
+    =link_to_add_invitation "Invite Another", f, :invitations
+    =f.submit
