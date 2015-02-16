@@ -53,20 +53,18 @@ var searchBox = new google.maps.places.SearchBox(
           position: place.geometry.location
         });
 
-        // Create PopUp for each place
-        var popupOptions = {
-          content: place.name
-        };
-
-        var popup = new google.maps.InfoWindow(popupOptions);
-
         markers.push(marker);
 
         bounds.extend(place.geometry.location);
         event_centre = place.geometry.location;
 
         google.maps.event.addListener(marker, 'click', function(){
-          console.log(this.title);
+          console.log(this);
+          var popupOptions = {
+            content: this.title
+          };
+          var popup = new google.maps.InfoWindow(popupOptions);
+          popup.open(map, this);
         });
       }
 
