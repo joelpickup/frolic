@@ -2,7 +2,8 @@
   =f.text_field :name, placeholder: "Name"
   %br/
   =f.text_area :description, placeholder: "description"
-
+  =f.text_field :Area, placeholder: "Area"
+  
   = f.fields_for :invitations do |invitations_f|
     = render 'invitation', invitations_f: invitations_f, f: f
   = link_to_add_invitation "Invite Another", f, :invitations  
