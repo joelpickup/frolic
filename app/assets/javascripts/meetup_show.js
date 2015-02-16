@@ -1,4 +1,5 @@
 var myMap = myMap || {};
+var event_centre;
 
 myMap.initialize = function() {
 
@@ -55,9 +56,12 @@ myMap.initialize = function() {
         markers.push(marker);
 
         bounds.extend(place.geometry.location);
+        event_centre = place.geometry.location;
+        console.log(event_centre);
       }
 
       map.fitBounds(bounds);
+
     });
 
     // Bias the SearchBox results towards places that are within the bounds of the
@@ -73,4 +77,13 @@ myMap.initialize = function() {
 $(function(){
  myMap.mapCanvas = $('#map-canvas')[0];
  myMap.initialize();
+ $('#event_search').on('click', function(){
+  latitude = String(event_centre.k);
+  longitude = String(event_centre.D);
+  // console.log(latitude,longitude);
+  var events;
+  $.getJSON("https://www.eventbriteapi.com/v3/events/search/?location.within=2km&location.latitude="+ latitude + "&location.longitude="+longitude+"&categories=103%2C110&start_date.keyword=this_week&token=SHSAVN36MVXA7GYU7G5P", function(data) {
+    console.log(data);
+  });
+ });
 });
