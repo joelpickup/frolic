@@ -8,8 +8,8 @@ class MeetupsController < ApplicationController
 
   def create
     @meetup = current_user.organise_meetup(meetup_params)
-    raise
     @meetup.save
+    redirect_to @meetup
   end
 
   def show
