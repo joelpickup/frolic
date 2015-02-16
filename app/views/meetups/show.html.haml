@@ -1,12 +1,12 @@
 %head
-  %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8iHCBUtd6LXJdkB7Jzh0Kj5qfcDtg6fs"}
+  %script{src:"https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyC8iHCBUtd6LXJdkB7Jzh0Kj5qfcDtg6fs"}
 %h1=@meetup.name
 %h2 Info
 %p Current Favourite Date 12th Feb - 
 -if current_user == @meetup.superhost
   "You are the superhost"
 #map-canvas
-%button#locator Locate me!
+%input#pac-input
 %h2 People
 %h3 Attending
 -@attending.each do |attendant|
