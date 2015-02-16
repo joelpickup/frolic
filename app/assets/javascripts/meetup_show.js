@@ -7,19 +7,19 @@ myMap.initialize = function() {
   center: { lat:  51.52, lng: -0.115},
   zoom: 14,
   mapTypeId:google.maps.MapTypeId.ROADMAP //default
-  };
+};
 
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  var defaultBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(-33.8902, 151.1759),
-      new google.maps.LatLng(-33.8474, 151.2631));
-  map.fitBounds(defaultBounds);
-  var input = /** @type {HTMLInputElement} */(
-        document.getElementById('pac-input'));
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    var markers = [];
-    var searchBox = new google.maps.places.SearchBox(
-      /** @type {HTMLInputElement} */(input));
+var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+var defaultBounds = new google.maps.LatLngBounds(
+  new google.maps.LatLng(-33.8902, 151.1759),
+  new google.maps.LatLng(-33.8474, 151.2631));
+map.fitBounds(defaultBounds);
+var input = /** @type {HTMLInputElement} */(
+  document.getElementById('pac-input'));
+map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+var markers = [];
+var searchBox = new google.maps.places.SearchBox(
+  /** @type {HTMLInputElement} */(input));
 
     // Listen for the event fired when the user selects an item from the
     // pick list. Retrieve the matching places for that item.
@@ -53,12 +53,23 @@ myMap.initialize = function() {
           position: place.geometry.location
         });
 
+        // Create PopUp for each place
+        var popupOptions = {
+          content: place.name
+        };
+
+        var popup = new google.maps.InfoWindow(popupOptions);
+
         markers.push(marker);
 
         bounds.extend(place.geometry.location);
         event_centre = place.geometry.location;
-        console.log(event_centre);
+
+        google.maps.event.addListener(marker, 'click', function(){
+          console.log(this.title);
+        });
       }
+
 
       map.fitBounds(bounds);
 
@@ -70,20 +81,21 @@ myMap.initialize = function() {
       var bounds = map.getBounds();
       searchBox.setBounds(bounds);
     });
- 
 
-};
 
-$(function(){
- myMap.mapCanvas = $('#map-canvas')[0];
- myMap.initialize();
- $('#event_search').on('click', function(){
-  latitude = String(event_centre.k);
-  longitude = String(event_centre.D);
+
+  };
+
+  $(function(){
+   myMap.mapCanvas = $('#map-canvas')[0];
+   myMap.initialize();
+   $('#event_search').on('click', function(){
+    latitude = String(event_centre.k);
+    longitude = String(event_centre.D);
   // console.log(latitude,longitude);
   var events;
   $.getJSON("https://www.eventbriteapi.com/v3/events/search/?location.within=2km&location.latitude="+ latitude + "&location.longitude="+longitude+"&categories=103%2C110&start_date.keyword=this_week&token=SHSAVN36MVXA7GYU7G5P", function(data) {
     console.log(data);
   });
- });
 });
+ });
