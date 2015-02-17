@@ -18,7 +18,7 @@ myMap.initialize = function() {
 
   google.maps.event.addListener(searchBox, 'places_changed', function() {
     var places = searchBox.getPlaces();
-
+    console.log(places);
     if (places.length == 0) {
       return;
     }
@@ -50,13 +50,14 @@ myMap.initialize = function() {
       bounds.extend(place.geometry.location);
       event_centre = place.geometry.location;
       google.maps.event.addListener(marker, 'click', function(){
+        id = $('#meetup_id').html();
         var popupOptions = {
-          content: this.title + "<button>Click!</button>"
+          content: this.title + "<form action='/meetups/"+id+"/venue_suggestions/new' data-remote='true'><input type='hidden' name='venue_suggestion[venue_name]' value='"+this.title+"'><input type='hidden' name='venue_suggestion[meetup_id]' value='"+id+"'><input type='hidden' name='venue_suggestion[lat]' value='"+this.position.k+"'><input type='hidden' name='venue_suggestion[long]' value='"+this.position.D+"'><button>Suggest this!</button></form>"
         };
         var popup = new google.maps.InfoWindow(popupOptions);
+        
         popup.open(map, this);
       });
-
     }
     map.fitBounds(bounds);
   });
@@ -83,7 +84,7 @@ $(function(){
     var markers = [];
 
     var events = data.events;
-
+    console.log(events);
     if (events.length == 0) {
       return;
     }
@@ -105,7 +106,14 @@ $(function(){
       var marker = new google.maps.Marker({
         map: global_map,
         title: event.name.text,
-        position: new google.maps.LatLng(event.venue.latitude, event.venue.longitude)
+        position: new google.maps.LatLng(event.venue.latitude, event.venue.longitude),
+        id: event.id,
+        logo: event.logo_url,
+        url: event.url,
+        venue_id: event.venue_id,
+        time: event.start.local,
+        event_id: event.id,
+        category: event.category.name
       });
 
       
@@ -113,7 +121,8 @@ $(function(){
       bounds.extend(new google.maps.LatLng(event.venue.latitude, event.venue.longitude));
       google.maps.event.addListener(marker, 'click', function(){
         var popupOptions = {
-          content:"AYOOO"
+          content: "<h2><strong>Name:</strong>"+this.title+"</h2><br><p class='time'><strong>Time:</strong>"+this.time+"</p><p class='category'><strong>Category:</strong>"+this.category+"</p><img style='height: 20px; width: 20px;'src='"+this.logo+"' class=''alt=''><a href='"+this.url+"' target='_blank'>More info</a><button>suggest this!</button>"
+
         };
         var popup = new google.maps.InfoWindow(popupOptions);
         popup.open(global_map, this);
@@ -121,57 +130,6 @@ $(function(){
 
     }
     global_map.fitBounds(bounds);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   });
 });
- //    var events = data.events;
- //    events.forEach(function(event){
- //      ev_lat = event.venue.latitude;
- //      ev_long = event.venue.latitude;
- //      var markers = [];
- //      var bounds = new google.maps.LatLngBounds();
- //      for (var i = 0, event; event = markers[i]; i++) {
- //        var image = {
- //          url: place.icon,
- //          size: new google.maps.Size(71, 71),
- //          origin: new google.maps.Point(0, 0),
- //          anchor: new google.maps.Point(17, 34),
- //          scaledSize: new google.maps.Size(25, 25)
- //        };
-
- //        // Create a marker for each place.
- //        var marker = new google.maps.Marker({
- //          map: global_map,
- //          icon: myMap.image,
- //          position: new google.maps.LatLng(ev_lat, ev_long)
- //        });
-        
- //        markers.push(marker);
- //      }
- //    });
- //  });
-
-// });
 });
