@@ -1,7 +1,4 @@
 class VenueSuggestionsController < ApplicationController
-  def new
-
-  end
 
   def create
     puts "*"*800
@@ -14,6 +11,6 @@ class VenueSuggestionsController < ApplicationController
 
   private
   def venue_suggestion_params
-    params.require(:venue_suggestion).permit(:venue_name, :meetup_id, :lat, :long)
+    params.require(:venue_suggestion).permit(:venue_name, :meetup_id, :lat, :long, :event_name, :event_description)
   end
 end
