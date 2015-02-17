@@ -1,10 +1,15 @@
 class VenueSuggestionsController < ApplicationController
   def new
+
+  end
+
+  def create
+    puts "*"*800
     @venue_suggestion = VenueSuggestion.new(venue_suggestion_params)
     @venue_suggestion.user_id = current_user.id
-    @venue_suggestion.save
-    puts "*"*100
-    puts @venue_suggestion
+    if @venue_suggestion.save
+      render :json => { :success => "success", :status_code => "200" }
+    end
   end
 
   private
