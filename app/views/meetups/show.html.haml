@@ -26,6 +26,12 @@
   =form_for @meetup do |f|
     =link_to_add_invitation "Invite Another", f, :invitations
     =f.submit
+%h2 Date Options
+-@date_options.each do |date_option|
+  = render 'date_option', date_option: date_option
+%h2 Venue Options
+-@venue_suggestions.each do |venue_suggestion|
+  = render 'venue_suggestion', venue_suggestion: venue_suggestion
 %h3 Add Date Options
 - if current_user == @meetup.superhost || @meetup.host
   =form_for @meetup, url: add_dates_path do |f|

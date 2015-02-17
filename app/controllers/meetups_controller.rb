@@ -17,6 +17,8 @@ class MeetupsController < ApplicationController
     @attending = @meetup.guests_that_are("accepted")
     @invited = @meetup.guests_that_are("invited")
     @declined = @meetup.guests_that_are("declined")
+    @date_options = @meetup.date_options
+    @venue_suggestions = @meetup.venue_suggestions
   end
   
   def update
@@ -27,8 +29,9 @@ class MeetupsController < ApplicationController
   end
   def add_dates
     @meetup = Meetup.find(params[:id])
-    x = @meetup.add_dates(meetup_params)
-    raise
+    @meetup.add_dates(meetup_params)
+    @meetup.save
+    redirect_to @meetup
   end
   private
   def meetup_params
