@@ -45,6 +45,7 @@ gem 'bullet', :group => "development"
 gem 'geocoder'
 gem 'neat'
 gem 'jquery-turbolinks' 
+gem 'acts_as_votable'
 
 #TESTING GEMS
 group :development, :test do
