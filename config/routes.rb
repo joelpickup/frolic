@@ -20,6 +20,7 @@ Rails.application.routes.draw do
  resources :meetups
  resources :meetups do
   resources :invitations
+  resources :venue_suggestions
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

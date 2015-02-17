@@ -1,6 +1,7 @@
 %head
   %script{src:"https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyC8iHCBUtd6LXJdkB7Jzh0Kj5qfcDtg6fs"}
 %h1=@meetup.name
+%p#meetup_id=@meetup.id
 %h2 Info
 %p Current Favourite Date 12th Feb - 
 -if current_user == @meetup.superhost
@@ -8,7 +9,9 @@
 %button#event_search Find Nearby Events
 #map-canvas
 %input#pac-input
-
+#test_joel{:style => "display:none"} AYO!!!
+#suggestions_container
+  %h2#suggestions_header Suggestions
 %h2 People
 %h3 Attending
 -@attending.each do |attendant|
