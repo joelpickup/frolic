@@ -36,6 +36,10 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bitters (1.0.0)
+      bourbon (>= 3.2)
+      sass (>= 3.2)
+      thor
     bourbon (3.2.4)
       sass (~> 3.2)
       thor
@@ -170,6 +174,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    refills (0.1.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     ruby_parser (3.6.4)
@@ -216,6 +221,7 @@ DEPENDENCIES
   acts_as_votable
   better_errors
   binding_of_caller
+  bitters
   bourbon
   bullet
   cancancan
@@ -236,6 +242,7 @@ DEPENDENCIES
   pry-stack_explorer
   rails (= 4.1.8)
   rails_12factor
+  refills
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring

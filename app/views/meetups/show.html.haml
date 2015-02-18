@@ -1,45 +1,51 @@
 %head
   %script{src:"https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyC8iHCBUtd6LXJdkB7Jzh0Kj5qfcDtg6fs"}
-%h1=@meetup.name
-%p#meetup_id=@meetup.id
-%h2 Info
-%p Current Favourite Date 12th Feb - 
--if current_user == @meetup.superhost
-  "You are the superhost"
-%button#event_search Find Nearby Events
-#map-canvas
-%input#pac-input
-#dates{:style => "display:none"}
-  %p#array=raw @dates.as_json
-#start_date{:style => "display:none"}=@start_date.try(:date)
-#end_date{:style => "display:none"}=@end_date.try(:date)
-#suggestions_container
-  %h2#suggestions_header Suggestions
-%h2 People
-%h3 Attending
--@attending.each do |attendant|
-  = render 'attendant', attendant: attendant
-%h3 Invited
--@invited.each do |attendant|
-  = render 'attendant', attendant: attendant
-%h3 Declined
--@declined.each do |attendant|
-  = render 'attendant', attendant: attendant
-- if current_user == @meetup.superhost
-  =form_for @meetup do |f|
-    =link_to_add_invitation "Invite Another", f, :invitations
-    =f.submit
-%h2 Date Options
--@date_options.each do |date_option|
-  = render 'date_option', date_option: date_option
-%h2 Venue Options
--@venue_suggestions.each do |venue_suggestion|
-  = render 'venue_suggestion', venue_suggestion: venue_suggestion
+#show_page_container    
+  %h1=@meetup.name
+  %p#meetup_id=@meetup.id
+  %ul.accordion-tabs
+    %li.tab-header-and-content
+      %a.is-active.tab-link{:href => "javascript:void(0)"} Venue Info
+      .tab-content
+        %button#event_search Find Nearby Events
+        #map-canvas
+        %input#pac-input
+        #suggestions_container
+          %h2#suggestions_header Suggestions
+        %h2 Venue Options
+        -@venue_suggestions.each do |venue_suggestion|
+          = render 'venue_suggestion', venue_suggestion: venue_suggestion
+    %li.tab-header-and-content
+      %a.tab-link{:href => "javascript:void(0)"} Dates & People
+      .tab-content
+        %h2 Date Options
+        -@date_options.each do |date_option|
+          = render 'date_option', date_option: date_option
+        - if current_user == @meetup.superhost
+          %h3 Add Date Options
+          =form_for @meetup, url: add_dates_path do |f|
+            =f.select :date_options_1, options_for_select(Meetup.options_1)
+            =f.number_field :date_options_2
+            =f.select :date_options_3, options_for_select(Meetup.options_3)
+            =f.submit
+        %h2 People
+        %h3 Attending
+        -@attending.each do |attendant|
+          = render 'attendant', attendant: attendant
+        %h3 Invited
+        -@invited.each do |attendant|
+          = render 'attendant', attendant: attendant
+        %h3 Declined
+        -@declined.each do |attendant|
+          = render 'attendant', attendant: attendant
+        - if current_user == @meetup.superhost
+          =form_for @meetup do |f|
+            =link_to_add_invitation "Invite Another", f, :invitations
+            =f.submit
 
-- if current_user == @meetup.superhost
-  %h3 Add Date Options
-  =form_for @meetup, url: add_dates_path do |f|
-    =f.select :date_options_1, options_for_select(Meetup.options_1)
-    =f.number_field :date_options_2
-    =f.select :date_options_3, options_for_select(Meetup.options_3)
-    =f.submit
+  / served to javascript
+  #dates{:style => "display:none"}
+    %p#array=raw @dates.as_json
+  #start_date{:style => "display:none"}=@start_date.try(:date)
+  #end_date{:style => "display:none"}=@end_date.try(:date)
+

@@ -38,6 +38,8 @@ gem 'omniauth-facebook'
 
 #GENERAL 
 gem 'bourbon'
+gem 'bitters'
+gem 'refills'
 gem "haml-rails", "~> 0.8"
 gem "html2haml"
 gem "erb2haml"
