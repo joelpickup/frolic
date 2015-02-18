@@ -98,6 +98,9 @@ $(function(){
  $('#suggestions_container').on("ajax:success", 'a', function(e,data,status,xhr){
   $(this).prev('.count').html(data);
  });
+ $('#dates_container').on("ajax:success", 'a', function(e,data,status,xhr){
+  $(this).prev('.count').html(data);
+ });
  var dateArrayStr = $('#array').html();
  var dateArray = $.parseJSON(dateArrayStr);
  $('#event_search').on('click', function(){

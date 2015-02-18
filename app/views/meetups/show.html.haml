@@ -25,16 +25,17 @@
     %li.tab-header-and-content
       %a.tab-link{:href => "javascript:void(0)"} Dates & People
       .tab-content
-        %h2 Date Options
-        -@date_options.each do |date_option|
-          = render 'date_option', date_option: date_option
-        - if current_user == @meetup.superhost
-          %h3 Add Date Options
-          =form_for @meetup, url: add_dates_path do |f|
-            =f.select :date_options_1, options_for_select(Meetup.options_1)
-            =f.number_field :date_options_2
-            =f.select :date_options_3, options_for_select(Meetup.options_3)
-            =f.submit
+        #dates_container
+          %h2 Date Options
+          -@date_options.each do |date_option|
+            = render 'date_option', date_option: date_option
+          - if current_user == @meetup.superhost
+            %h3 Add Date Options
+            =form_for @meetup, url: add_dates_path do |f|
+              =f.select :date_options_1, options_for_select(Meetup.options_1)
+              =f.number_field :date_options_2
+              =f.select :date_options_3, options_for_select(Meetup.options_3)
+              =f.submit
         %h2 People
         %h3 Attending
         -@attending.each do |attendant|
