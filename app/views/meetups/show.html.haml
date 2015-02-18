@@ -63,6 +63,12 @@
     %li.tab-header-and-content
       %a.tab-link{:href => "javascript:void(0)"} Comments
       .tab-content
+        #comments_container
+          -@meetup.comments.each do |comment|
+          
+            %strong=comment.user.name
+            %p=comment.comment
+          = render 'comment_form', meetup: @meetup
 
   / served to javascript
   #dates{:style => "display:none"}
