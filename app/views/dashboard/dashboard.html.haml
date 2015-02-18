@@ -1,2 +1,9 @@
--@my_meetups.each do |meetup|
-  = render 'meetup', meetup: meetup
+#page_container
+  %h2.title Upcoming meetups
+  -if @my_meetups
+    #meetups_container
+      -@my_meetups.each do |meetup|
+        .meetup_box
+          = render 'meetup', meetup: meetup
+  - else
+    %h2 No upcoming meetups, organise some!

@@ -1,3 +1,6 @@
-%h1 frolic
-%h2 organise meetups with your friends - get location-based suggestions
-= link_to 'Sign In', new_user_session_path
+#home_container
+  %h1 frolic
+  %h2 organise meetups with your friends - get location-based suggestions
+  -if !current_user
+    = link_to 'Sign In', new_user_session_path, html_options = {class: :btn}
+    = link_to 'Register', new_user_registration_path, html_options = {class: :btn}

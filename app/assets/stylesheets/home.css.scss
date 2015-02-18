@@ -1,3 +1,36 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(http://fonts.googleapis.com/css?family=Stalemate);
+h1 {
+  color: white;
+  font-size: 15em;
+  margin: 0;
+  font-family: 'Stalemate', cursive;
+}
+h2 {
+  font-family: 'Arial', cursive;
+  color: white;
+}
+#home_container {
+  text-align: center;
+  a {
+    color: white;
+  }
+}
+.btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #878f94;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #d6d6d6;
+  text-decoration: none;
+}

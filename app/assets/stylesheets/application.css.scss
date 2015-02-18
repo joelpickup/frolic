@@ -13,5 +13,15 @@
  *= require_self
  *= require_tree .
  */
-
 @import "bourbon";
+
+body {
+  background-image: url('escheresque_ste.png');
+}
+#login {
+  text-align: center;
+  color: white;
+  a {
+    color: white;
+  }
+}

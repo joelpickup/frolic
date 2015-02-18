@@ -9,18 +9,13 @@
     = csrf_meta_tags
   %body
     %p=notice
-    #p=alert
+    %p=alert
     #login
-    - if current_user
-      = current_user.email
-      = link_to "Organise Meetup", new_meetup_path
-      = link_to "Meetups / Events", '#'
-      = link_to "frolic", dashboard_path
-      = link_to "My Account", edit_user_registration_path
-      = link_to "Log out", destroy_user_session_path, method: :delete
-    - else
-      = link_to "About", '#'
-      = link_to "Facebook", '#'
-      = link_to "Twitter", '#'
+      - if current_user
+        = link_to "Organise Meetup", new_meetup_path, html_options = {class: :btn}
+        = link_to "Upcoming Meetups", dashboard_path, html_options = {class: :btn}
+        = link_to "My Account", edit_user_registration_path, html_options = {class: :btn}
+        = link_to "Log out", destroy_user_session_path, method: :delete
+        %p= current_user.email
 
     =yield
