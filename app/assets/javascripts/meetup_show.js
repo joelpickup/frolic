@@ -60,6 +60,7 @@ myMap.initialize = function() {
         $('#suggestions_header').append(form);
         $('#form_'+id).on("ajax:success", function(e, data, status, xhr){
           $('#suggestion_'+id).remove();
+          $('#suggestions_container').append(data.venueSuggestionPartial);
         });
         $('#cancel').on("click", function(){
           $('#suggestion_'+id).remove();
@@ -94,13 +95,9 @@ google.maps.event.addListener(map, 'bounds_changed', function() {
 $(function(){
  myMap.mapCanvas = $('#map-canvas')[0];
  myMap.initialize();
- $('a').on("ajax:success", function(e,data,status,xhr){
+ $('#suggestions_container').on("ajax:success", 'a', function(e,data,status,xhr){
   $(this).prev('.count').html(data);
  });
- // $('#form_'+id).on("ajax:success", function(e, data, status, xhr){
- //   $('#suggestion_'+id).remove();
- //   $(window).location.reload(true);
- // });
  var dateArrayStr = $('#array').html();
  var dateArray = $.parseJSON(dateArrayStr);
  $('#event_search').on('click', function(){
@@ -157,7 +154,7 @@ $(function(){
        $('#suggestions_header').append(form);
        $('#form_'+id).on("ajax:success", function(e, data, status, xhr){
          $('#suggestion_'+id).remove();
-         $(window).location.reload(true);
+         $('#suggestions_container').append(data.venueSuggestionPartial);
        });
        $('#cancel').on("click", function(){
          $('#suggestion_'+id).remove();

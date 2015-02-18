@@ -4,7 +4,8 @@ class VenueSuggestionsController < ApplicationController
     @venue_suggestion = VenueSuggestion.new(venue_suggestion_params)
     @venue_suggestion.user_id = current_user.id
     if @venue_suggestion.save
-      render :json => { :success => "success", :status_code => "200" }
+      @html_content = render_to_string partial: 'meetups/venue_suggestion', :locals => { :venue_suggestion => @venue_suggestion }
+      render :json => { :venueSuggestionPartial => @html_content }
     end
   end
 

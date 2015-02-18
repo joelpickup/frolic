@@ -19,9 +19,9 @@
         %input#pac-input
         #suggestions_container
           %h2#suggestions_header Suggestions
-        %h2 Venue Options
-        -@venue_suggestions.each do |venue_suggestion|
-          = render 'venue_suggestion', venue_suggestion: venue_suggestion
+          %h2#venue_options_header Venue Options
+          -@venue_suggestions.each do |venue_suggestion|
+            = render 'venue_suggestion', venue_suggestion: venue_suggestion
     %li.tab-header-and-content
       %a.tab-link{:href => "javascript:void(0)"} Dates & People
       .tab-content
