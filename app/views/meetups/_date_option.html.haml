@@ -1,4 +1,4 @@
 =date_option.date
-=date_option.get_likes.count
-= link_to 'vote', vote_date_option_path(date_option), class: 'vote'
+%span.count=date_option.get_likes.count
+= link_to 'vote', vote_date_option_path(date_option), class: 'vote', remote: true
 %br/

@@ -4,8 +4,6 @@ var global_map;
 
 myMap.initialize = function() {
   var markers = [];
-  // style = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}];
-
   style = [{"featureType":"road","stylers":[{"hue":"#5e00ff"},{"saturation":-79}]},{"featureType":"poi","stylers":[{"saturation":-78},{"hue":"#6600ff"},{"lightness":-47},{"visibility":"off"}]},{"featureType":"road.local","stylers":[{"lightness":22}]},{"featureType":"landscape","stylers":[{"hue":"#6600ff"},{"saturation":-11}]},{},{},{"featureType":"water","stylers":[{"saturation":-65},{"hue":"#1900ff"},{"lightness":8}]},{"featureType":"road.local","stylers":[{"weight":1.3},{"lightness":30}]},{"featureType":"transit","stylers":[{"visibility":"simplified"},{"hue":"#5e00ff"},{"saturation":-16}]},{"featureType":"transit.line","stylers":[{"saturation":-72}]},{}]
 
   var mapOptions = {
@@ -50,7 +48,7 @@ myMap.initialize = function() {
         position: place.geometry.location,
         id: place.id,
         popup: new google.maps.InfoWindow({
-          content: place.name + "<button data-name='"+place.name+"' data-lat='"+place.geometry.location.k+"' data-long='"+place.geometry.location.D+"' id='"+place.id+"'>Click!</button>"
+          content: place.name + "<button data-name='"+place.name+"' data-lat='"+place.geometry.location.k+"' data-long='"+place.geometry.location.D+"' id='"+place.id+"'>Suggest!</button>"
         })
       });
 
@@ -93,14 +91,16 @@ google.maps.event.addListener(map, 'bounds_changed', function() {
 
 
 
-
-
-
-
-
 $(function(){
  myMap.mapCanvas = $('#map-canvas')[0];
  myMap.initialize();
+ $('a').on("ajax:success", function(e,data,status,xhr){
+  $(this).prev('.count').html(data);
+ });
+ // $('#form_'+id).on("ajax:success", function(e, data, status, xhr){
+ //   $('#suggestion_'+id).remove();
+ //   $(window).location.reload(true);
+ // });
  var dateArrayStr = $('#array').html();
  var dateArray = $.parseJSON(dateArrayStr);
  $('#event_search').on('click', function(){
@@ -153,7 +153,7 @@ $(function(){
        data = this.dataset;
        console.log(data.description);
        id = $('#meetup_id').html();
-       form = "<div id='suggestion_"+id+"'><form id='form_"+id+"'action='/meetups/"+id+"/venue_suggestions/' method='post' data-remote='true'><input type='hidden' name='venue_suggestion[meetup_id]' value='"+id+"'><input type='text' name='venue_suggestion[venue_name]' value='"+data.venue_name+"'><input type='hidden' name='venue_suggestion[lat]' value='"+data.lat+"'><input type='hidden' name='venue_suggestion[long]' value='"+data.long+"'><input type='text' name='venue_suggestion[event_name]' placeholder='Event Name' value='"+data.name+"'><textarea name='venue_suggestion[event_description]'></textarea><input type='submit' value='suggest!'><a href='#' id='cancel'>cancel</a></div>";
+       form = "<div id='suggestion_"+id+"'><form id='form_"+id+"'action='/meetups/"+id+"/venue_suggestions/' method='post' data-remote='true'><input type='hidden' name='venue_suggestion[meetup_id]' value='"+id+"'><input type='text' name='venue_suggestion[venue_name]' value='"+data.venue_name+"'><input type='hidden' name='venue_suggestion[lat]' value='"+data.lat+"'><input type='hidden' name='venue_suggestion[long]' value='"+data.long+"'><input type='text' name='venue_suggestion[event_name]' placeholder='Event Name' value='"+data.name+"'><textarea name='venue_suggestion[event_description]' placeholder='Event Description'></textarea><input type='submit' value='suggest!'><a href='#' id='cancel'>cancel</a></div>";
        $('#suggestions_header').append(form);
        $('#form_'+id).on("ajax:success", function(e, data, status, xhr){
          $('#suggestion_'+id).remove();

@@ -8,7 +8,7 @@ class VotesController < ApplicationController
     else
       d.liked_by current_user
     end
-    redirect_to @meetup
+    render :json => d.get_likes.count
   end
 
   def vote_venue
