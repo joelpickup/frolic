@@ -1,4 +1,5 @@
 =date_option.date
 %span.count=date_option.get_likes.count
 = link_to 'vote', vote_date_option_path(date_option), class: 'vote', remote: true
+= link_to 'delete', date_option_path(date_option), method: :delete, data: { confirm: 'Are you sure?' } if current_user == @meetup.superhost
 %br/

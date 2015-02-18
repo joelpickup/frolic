@@ -3,3 +3,5 @@
     %h2=meetup.name
     =meetup.description
     =meetup.location_id
+    %br/
+    =meetup.invitations.where(user_id: current_user.id).first.status
