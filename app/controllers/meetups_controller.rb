@@ -18,6 +18,8 @@ class MeetupsController < ApplicationController
     @invited = @meetup.guests_that_are("invited")
     @declined = @meetup.guests_that_are("declined")
     @date_options = @meetup.date_options
+    @start_date = @date_options.min_by do |date_option| date_option.date end
+    @end_date = @date_options.max_by do |date_option| date_option.date end
     @venue_suggestions = @meetup.venue_suggestions
   end
   

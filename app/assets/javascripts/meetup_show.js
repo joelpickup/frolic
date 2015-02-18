@@ -99,10 +99,11 @@ $(function(){
  $('#event_search').on('click', function(){
  latitude = String(event_centre.k);
  longitude = String(event_centre.D);
- $.getJSON("https://www.eventbriteapi.com/v3/events/search/?location.within=2km&location.latitude="+ latitude + "&location.longitude="+longitude+"&categories=103%2C110&start_date.keyword=this_week&token=SHSAVN36MVXA7GYU7G5P", function(data) {
+ start_date = $('#start_date').html();
+ end_date = $('#end_date').html();
+ $.getJSON("https://www.eventbriteapi.com/v3/events/search/?location.within=2km&location.latitude="+ latitude + "&location.longitude="+longitude+"&categories=103%2C110&start_date.range_start="+start_date+"T00%3A00%3A00Z&start_date.range_end="+end_date+"T23%3A00%3A00Z&token=SHSAVN36MVXA7GYU7G5P", function(data) {
    console.log(data.events);
    var markers = [];
-
    var events = data.events;
    console.log(events);
    if (events.length == 0) {
@@ -135,7 +136,7 @@ $(function(){
        event_id: event.id,
        category: event.category.name,
        popup: new google.maps.InfoWindow({
-         content: "<h2><strong>Name:</strong>"+event.name.text+"</h2><br><p class='time'><strong>Time:</strong>"+event.start.local+"</p><p class='category'><strong>Category:</strong>"+event.category.name+"</p><img style='height: 20px; width: 20px;'src='"+event.logo_url+"' class=''alt=''><a href='"+event.url+"' target='_blank'>More info</a><button id='"+event.id+"' data-name='"+event.name.text+"' data-id='"+event.id+"' data-venue_id='"+event.venue_id+"' data-venue_name='"+event.venue.name+"' data-id='"+event.id+"' data-lat='"+event.venue.latitude+"' data-description='"+event.description.text+"' data-long='"+event.venue.longitude+"'>suggest this!</button>"
+         content: "<h2><strong>Name:</strong>"+event.name.text+"</h2><br><p class='time'><strong>Time:</strong>"+event.start.local+"</p><p class='category'><strong>Category:</strong>"+event.category.name+"</p><img style='height: 20px; width: 20px;'src='"+event.logo_url+"' class=''alt=''><a href='"+event.url+"' target='_blank'>More info</a><button id='"+event.id+"' data-name='"+event.name.text+"' data-id='"+event.id+"' data-venue_id='"+event.venue_id+"' data-venue_name='"+event.venue.name+"' data-id='"+event.id+"' data-lat='"+event.venue.latitude+"' data-long='"+event.venue.longitude+"'>suggest this!</button>"
        })
      });
 
@@ -144,7 +145,7 @@ $(function(){
        data = this.dataset;
        console.log(data.description);
        id = $('#meetup_id').html();
-       form = "<div id='suggestion_"+id+"'><form id='form_"+id+"'action='/meetups/"+id+"/venue_suggestions/' method='post' data-remote='true'><input type='hidden' name='venue_suggestion[meetup_id] value='"+id+"'><input type='text' name='venue_suggestion[venue_name]' value='"+data.venue_name+"'><input type='hidden' name='venue_suggestion[lat]' value='"+data.lat+"'><input type='hidden' name='venue_suggestion[long]' value='"+data.long+"'><input type='text' name='venue_suggestion[event_name]' placeholder='Event Name' value='"+data.name+"'><textarea name='venue_suggestion[event_description]'>"+data.description+"</textarea><input type='submit' value='suggest!'><a href='#' id='cancel'>cancel</a></div>";
+       form = "<div id='suggestion_"+id+"'><form id='form_"+id+"'action='/meetups/"+id+"/venue_suggestions/' method='post' data-remote='true'><input type='hidden' name='venue_suggestion[meetup_id] value='"+id+"'><input type='text' name='venue_suggestion[venue_name]' value='"+data.venue_name+"'><input type='hidden' name='venue_suggestion[lat]' value='"+data.lat+"'><input type='hidden' name='venue_suggestion[long]' value='"+data.long+"'><input type='text' name='venue_suggestion[event_name]' placeholder='Event Name' value='"+data.name+"'><textarea name='venue_suggestion[event_description]'></textarea><input type='submit' value='suggest!'><a href='#' id='cancel'>cancel</a></div>";
        $('#suggestions_header').append(form);
        $('#form_'+id).on("ajax:success", function(e, data, status, xhr){
          $('#suggestion_'+id).remove();

@@ -18,6 +18,16 @@ Rails.application.routes.draw do
  resources :invitations
  resources :locations
  resources :meetups
+ resources :venue_suggestions do
+  member do
+    get 'vote', to: 'votes#vote_venue'
+  end
+ end
+ resources :date_options do
+  member do
+    get 'vote', to: 'votes#vote_date'
+  end
+end
  resources :meetups do
   resources :invitations
   resources :venue_suggestions
