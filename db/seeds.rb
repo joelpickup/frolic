@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!(first_name:"Hannah", surname:"Mills", email:"hannah@ga.com", password:"password")
+User.create!(first_name:"Ellie", surname:"McGregor", email:"ellie@ga.com", password:"password")
 User.create!(first_name:"Tony", surname:"Goncalves", email:"tony@ga.com", password:"password")
 User.create!(first_name:"Julia", surname:"Mansson", email:"julia@ga.com", password:"password")
 User.create!(first_name:"Sebastian", surname:"Riddle", email:"sebastian@ga.com", password:"password")
@@ -24,5 +25,8 @@ User.create!(first_name:"Michael", surname:"Pavling", email:"michael@ga.com", pa
 User.create!(first_name:"Jarkyn", surname:"S", email:"jarkyn@ga.com", password:"password")
 User.create!(first_name:"Alex", surname:"Chin",  email:"alex@ga.com", password:"password")
 User.create!(first_name:"Johanna", surname:"Carlberg", email:"johanna@ga.com", password:"password")
-User.create!(first_name:"Guy", surname:"Routledge", email:"guy@ga.com", password:"password")
+guy = User.create!(first_name:"Guy", surname:"Routledge", email:"guy@ga.com", password:"password")
+joel = User.create!(first_name:"Joel", surname:"Pickup", email:"joel@ga.com", password:"password")
+
+
 
