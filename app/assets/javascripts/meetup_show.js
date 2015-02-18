@@ -96,16 +96,19 @@ google.maps.event.addListener(map, 'bounds_changed', function() {
 $(function(){
  myMap.mapCanvas = $('#map-canvas')[0];
  myMap.initialize();
+ var dateArrayStr = $('#array').html();
+ var dateArray = $.parseJSON(dateArrayStr);
  $('#event_search').on('click', function(){
  latitude = String(event_centre.k);
  longitude = String(event_centre.D);
  start_date = $('#start_date').html();
  end_date = $('#end_date').html();
  $.getJSON("https://www.eventbriteapi.com/v3/events/search/?location.within=2km&location.latitude="+ latitude + "&location.longitude="+longitude+"&categories=103%2C110&start_date.range_start="+start_date+"T00%3A00%3A00Z&start_date.range_end="+end_date+"T23%3A00%3A00Z&token=SHSAVN36MVXA7GYU7G5P", function(data) {
-   console.log(data.events);
    var markers = [];
    var events = data.events;
-   console.log(events);
+   events = events.filter(function(obj){
+    return dateArray.indexOf(obj.start.local.slice(0, -9)) > -1;
+   });
    if (events.length == 0) {
      return;
    }
