@@ -157,6 +157,7 @@ $(function(){
        $('#suggestions_header').append(form);
        $('#form_'+id).on("ajax:success", function(e, data, status, xhr){
          $('#suggestion_'+id).remove();
+         $(window).location.reload(true);
        });
        $('#cancel').on("click", function(){
          $('#suggestion_'+id).remove();

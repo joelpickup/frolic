@@ -22,11 +22,15 @@ class MeetupsController < ApplicationController
     @end_date = @date_options.max_by do |date_option| date_option.date end
     @dates = @date_options.map{|date_option|date_option.date}
     @venue_suggestions = @meetup.venue_suggestions
+    @most_liked_date = @date_options.max_by do |date_option| date_option.get_likes.count end
+    @most_liked_venue = @venue_suggestions.max_by do |venue_suggestion| venue_suggestion.get_likes.count end
   end
   
   def update
     @meetup = Meetup.find(params[:id])
     if @meetup.update_attributes(meetup_params)
+      redirect_to meetup_path
+    else
       redirect_to meetup_path
     end
   end
