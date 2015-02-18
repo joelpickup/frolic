@@ -1,7 +1,6 @@
 class VenueSuggestionsController < ApplicationController
-
+  load_and_authorize_resource
   def create
-    puts "*"*800
     @venue_suggestion = VenueSuggestion.new(venue_suggestion_params)
     @venue_suggestion.user_id = current_user.id
     if @venue_suggestion.save

@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   respond_to :html, :xml, :json
-
+  load_and_authorize_user
   def new
     @location = Location.new
   end

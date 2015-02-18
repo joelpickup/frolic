@@ -25,7 +25,7 @@
 %h3 Declined
 -@declined.each do |attendant|
   = render 'attendant', attendant: attendant
-- if current_user == @meetup.superhost || @meetup.host
+- if current_user == @meetup.superhost
   =form_for @meetup do |f|
     =link_to_add_invitation "Invite Another", f, :invitations
     =f.submit
@@ -35,8 +35,9 @@
 %h2 Venue Options
 -@venue_suggestions.each do |venue_suggestion|
   = render 'venue_suggestion', venue_suggestion: venue_suggestion
-%h3 Add Date Options
-- if current_user == @meetup.superhost || @meetup.host
+
+- if current_user == @meetup.superhost
+  %h3 Add Date Options
   =form_for @meetup, url: add_dates_path do |f|
     =f.select :date_options_1, options_for_select(Meetup.options_1)
     =f.number_field :date_options_2

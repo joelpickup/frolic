@@ -1,6 +1,6 @@
 class MeetupsController < ApplicationController
   respond_to :html, :xml, :json
-  
+  load_and_authorize_resource
   def new
     @meetup = Meetup.new
     @meetup.invitations.new 
