@@ -28,5 +28,7 @@ User.create!(first_name:"Johanna", surname:"Carlberg", email:"johanna@ga.com", p
 guy = User.create!(first_name:"Guy", surname:"Routledge", email:"guy@ga.com", password:"password")
 joel = User.create!(first_name:"Joel", surname:"Pickup", email:"joel@ga.com", password:"password")
 
+meetup = Meetup.create(name: "Let's Hangout", description: "Time to hangout", area:"shoreditch")
 
+Invitation.create(meetup_id: meetup_id, status:"superhost")
 
