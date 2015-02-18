@@ -153,7 +153,7 @@ $(function(){
        data = this.dataset;
        console.log(data.description);
        id = $('#meetup_id').html();
-       form = "<div id='suggestion_"+id+"'><form id='form_"+id+"'action='/meetups/"+id+"/venue_suggestions/' method='post' data-remote='true'><input type='hidden' name='venue_suggestion[meetup_id] value='"+id+"'><input type='text' name='venue_suggestion[venue_name]' value='"+data.venue_name+"'><input type='hidden' name='venue_suggestion[lat]' value='"+data.lat+"'><input type='hidden' name='venue_suggestion[long]' value='"+data.long+"'><input type='text' name='venue_suggestion[event_name]' placeholder='Event Name' value='"+data.name+"'><textarea name='venue_suggestion[event_description]'></textarea><input type='submit' value='suggest!'><a href='#' id='cancel'>cancel</a></div>";
+       form = "<div id='suggestion_"+id+"'><form id='form_"+id+"'action='/meetups/"+id+"/venue_suggestions/' method='post' data-remote='true'><input type='hidden' name='venue_suggestion[meetup_id]' value='"+id+"'><input type='text' name='venue_suggestion[venue_name]' value='"+data.venue_name+"'><input type='hidden' name='venue_suggestion[lat]' value='"+data.lat+"'><input type='hidden' name='venue_suggestion[long]' value='"+data.long+"'><input type='text' name='venue_suggestion[event_name]' placeholder='Event Name' value='"+data.name+"'><textarea name='venue_suggestion[event_description]'></textarea><input type='submit' value='suggest!'><a href='#' id='cancel'>cancel</a></div>";
        $('#suggestions_header').append(form);
        $('#form_'+id).on("ajax:success", function(e, data, status, xhr){
          $('#suggestion_'+id).remove();

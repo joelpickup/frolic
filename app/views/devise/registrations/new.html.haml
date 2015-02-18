@@ -1,21 +1,23 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  .field.required
-    = f.text_field :first_name, autofocus: true, required: true, placeholder: "first name", class: "first_name"
-    %span
-  .field.required
-    = f.text_field :surname, autofocus: true, required: true, placeholder: "surname", class: "surname"
-    %span
-  .field.required
-    = f.email_field :email, autofocus: true, required: true, placeholder: "email"
-    %span
-  .field.required
-    = f.password_field :password, autocomplete: "off", required: true, placeholder: "password", pattern: "(?=^.{8,}$)((?=.*d)|(?=.*W+))(?![.n])(?=.*[A-Z])(?=.*[a-z]).*$"
-    %span
-  .field.required
-    = f.password_field :password_confirmation, autocomplete: "off", required: true, placeholder: "password confirmation"
-    %span
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+#registration_container
+  %h1 frolic
+  %h2 Sign up
+  = form_for(resource, as: resource_name, url: registration_path(resource_name))do |f|
+    = devise_error_messages!
+    .field.required
+      = f.text_field :first_name, autofocus: true, required: true, placeholder: "first name", class: "first_name"
+      %span
+    .field.required
+      = f.text_field :surname, autofocus: true, required: true, placeholder: "surname", class: "surname"
+      %span
+    .field.required
+      = f.email_field :email, autofocus: true, required: true, placeholder: "email"
+      %span
+    .field.required
+      = f.password_field :password, autocomplete: "off", required: true, placeholder: "password", pattern: "(?=^.{8,}$)((?=.*d)|(?=.*W+))(?![.n])(?=.*[A-Z])(?=.*[a-z]).*$"
+      %span
+    .field.required
+      = f.password_field :password_confirmation, autocomplete: "off", required: true, placeholder: "password confirmation"
+      %span
+    .actions
+      = f.submit "Sign up"
+  = render "devise/shared/links"

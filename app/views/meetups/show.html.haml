@@ -3,13 +3,13 @@
 #show_page_container    
   %h1=@meetup.name
   %p#meetup_id=@meetup.id
-  -if @most_liked_date.get_likes.count > 0
+  -if @most_liked_date && @most_liked_date.try(:get_likes).try(:count) > 0
     %strong Most liked date: 
-    =@most_liked_date.date
+    =@most_liked_date.try(:date)
   %br/
-  -if @most_liked_venue.get_likes.count > 0
+  -if @most_liked_venue && @most_liked_venue.try(:get_likes).try(:count) > 0
     %strong Most liked venue suggestions: 
-    =@most_liked_venue.event_name
+    =@most_liked_venue.try(:event_name)
   %ul.accordion-tabs
     %li.tab-header-and-content
       %a.is-active.tab-link{:href => "javascript:void(0)"} Venue Info
