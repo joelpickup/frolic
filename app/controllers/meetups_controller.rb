@@ -24,6 +24,7 @@ class MeetupsController < ApplicationController
     @venue_suggestions = @meetup.venue_suggestions
     @most_liked_date = @date_options.max_by do |date_option| date_option.get_likes.count end
     @most_liked_venue = @venue_suggestions.max_by do |venue_suggestion| venue_suggestion.get_likes.count end
+    @current_users_invitation = @meetup.invitations.where(user_id: current_user.id).first
   end
   
   def update

@@ -11,6 +11,15 @@
     -if @most_liked_venue && @most_liked_venue.try(:get_likes).try(:count) > 0
       %strong Most liked venue suggestions: 
       =@most_liked_venue.try(:event_name)
+    %br/
+    -if @current_users_invitation.status == "invited"
+      =form_for(@current_users_invitation) do |f|
+        =f.hidden_field :status, :value => "accepted"
+        =f.submit "Accept"
+      =form_for(@current_users_invitation) do |f|
+        =f.hidden_field :status, :value => "declined"
+        =f.submit "Decline"
+      %br/
   %ul.accordion-tabs
     %li.tab-header-and-content
       %a.is-active.tab-link{:href => "javascript:void(0)"} Venue Info
@@ -51,6 +60,9 @@
           =form_for @meetup do |f|
             =link_to_add_invitation "Invite Another", f, :invitations
             =f.submit
+    %li.tab-header-and-content
+      %a.tab-link{:href => "javascript:void(0)"} Comments
+      .tab-content
 
   / served to javascript
   #dates{:style => "display:none"}

@@ -24,6 +24,9 @@
 }
 #meetups_container {
   text-align: center;
+  p {
+    color: black;
+  }
 }
 .meetup_box {
   display: inline-block;

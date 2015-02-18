@@ -1,4 +1,8 @@
-=venue_suggestion.event_name
+%strong=venue_suggestion.event_name
+%br/
+=venue_suggestion.event_description
+%br/
+%strong Votes:
 %span.count=venue_suggestion.get_likes.count
 = link_to 'vote', vote_venue_suggestion_path(venue_suggestion), class: 'vote', remote: true
 %br/

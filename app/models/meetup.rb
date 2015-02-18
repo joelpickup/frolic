@@ -60,6 +60,10 @@ class Meetup < ActiveRecord::Base
     invitations.where(status: status).map{|invitation| invitation.user}
   end
 
+  def current_users_invitation_status
+    invitations.where(user_id: current_user.id).first.status
+  end
+
   private
   def date_of_next(day)
     date = Date.parse(day)
