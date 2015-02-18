@@ -9,6 +9,8 @@ class Meetup < ActiveRecord::Base
 
   accepts_nested_attributes_for :invitations, allow_destroy: true
 
+  acts_as_commentable
+
   attr_accessor :date_options_1
   attr_accessor :date_options_2
   attr_accessor :date_options_3

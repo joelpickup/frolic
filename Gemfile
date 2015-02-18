@@ -48,6 +48,7 @@ gem 'geocoder'
 gem 'neat'
 gem 'jquery-turbolinks' 
 gem 'acts_as_votable'
+gem 'acts_as_commentable'
 
 #TESTING GEMS
 group :development, :test do
