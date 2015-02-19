@@ -1,26 +1,27 @@
-= form_for @location do |f|
-  .field
-    = f.label :name
-    = f.text_field :name, required: true
-  .field
-    = f.label :description
-    = f.text_area :description, required: true
-  .field
-    = f.label :address_1
-    = f.text_field :address_1
-  .field
-    = f.label :address_2
-    = f.text_field :address_2
-  .field
-    = f.label :town
-    = f.text_field :town
-  .field
-    = f.label :postcode
-    = f.text_field :postcode
-  .field
-    = f.label :county
-    = f.text_field :county 
-  .field
-    = f.hidden_field :user_id, value: current_user.id
-    = f.submit
+#new_location_container
+  = form_for @location do |f|
+    .field
+      = f.label :name
+      = f.text_field :name, required: true
+    .field
+      = f.label :description
+      = f.text_area :description, required: true
+    .field
+      = f.label :address_1
+      = f.text_field :address_1
+    .field
+      = f.label :address_2
+      = f.text_field :address_2
+    .field
+      = f.label :town
+      = f.text_field :town
+    .field
+      = f.label :postcode
+      = f.text_field :postcode
+    .field
+      = f.label :county
+      = f.text_field :county 
+    .field
+      = f.hidden_field :user_id, value: current_user.id
+      = f.submit
 

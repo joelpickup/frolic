@@ -5,5 +5,7 @@
     %p=meetup.location_id
     -if current_user == meetup.superhost
       %p Your event
+      =link_to 'delete', meetup_path(meetup), method: :delete, data: { confirm: 'Are you sure?' }
     %br/
     %p=meetup.invitations.where(user_id: current_user.id).first.status
+    %br/

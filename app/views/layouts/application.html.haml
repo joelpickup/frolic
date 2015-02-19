@@ -8,21 +8,20 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
--if current_user
-  %header.centered-navigation{:role => "banner"}
-    .centered-navigation-wrapper
-      %a.mobile-logo{:href => "javascript:void(0)"}
-        %img{:alt => "Logo image", :src => "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png"}
-      %a#js-centered-navigation-mobile-menu.centered-navigation-mobile-menu{:href => "javascript:void(0)"} MENU
-      %nav{:role => "navigation"}
-        %ul#js-centered-navigation-menu.centered-navigation-menu.show
-          %li.nav-link
-            = link_to "Organise Meetup", new_meetup_path
-          %li.nav-link
-            = link_to "Upcoming Meetups", dashboard_path
-          %li.nav-link
-            = link_to "My Account", edit_user_registration_path
-          %li.nav-link
-            = link_to "Log out", destroy_user_session_path, method: :delete       
-          
+  -if current_user
+    %header.centered-navigation{:role => "banner"}
+      .centered-navigation-wrapper
+        %a.mobile-logo{:href => "javascript:void(0)"}
+          %img{:alt => "Logo image", :src => "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png"}
+        %a#js-centered-navigation-mobile-menu.centered-navigation-mobile-menu{:href => "javascript:void(0)"} MENU
+        %nav{:role => "navigation"}
+          %ul#js-centered-navigation-menu.centered-navigation-menu.show
+            %li.nav-link
+              = link_to "Organise Meetup", new_meetup_path
+            %li.nav-link
+              = link_to "Upcoming Meetups", dashboard_path
+            %li.nav-link
+              = link_to "My Account", edit_user_registration_path
+            %li.nav-link
+              = link_to "Log out", destroy_user_session_path, method: :delete            
 =yield

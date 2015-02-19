@@ -35,6 +35,11 @@ class MeetupsController < ApplicationController
       redirect_to meetup_path
     end
   end
+  def destroy
+    @meetup = Meetup.find(params[:id])
+    @meetup.destroy
+    redirect_to dashboard_path
+  end
   def add_dates
     @meetup = Meetup.find(params[:id])
     @meetup.add_dates(meetup_params)
