@@ -38,7 +38,7 @@ class Meetup < ActiveRecord::Base
       while i < end_date 
         if i.wday < 6 && i.wday > 0
         date_options.new(date: i)
-      end
+        end
         i += 1
       end
     when 'Weekend'
@@ -49,8 +49,7 @@ class Meetup < ActiveRecord::Base
         i += 7
       end
     else
-      first_date = date_of_next(day)
-      i = first_date
+      i = date_of_next(day)
       while i < end_date 
         date_options.new(date: i)
         i += 7
