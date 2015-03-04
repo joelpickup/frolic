@@ -25,7 +25,7 @@
         =f.hidden_field :status, :value => "accepted"
         =f.submit "Accept"
       %br/
-    -if @current_users_invitation.status == "accepted"
+    -if @current_users_invitation.status == "accepted" && @meetup.superhost != current_user
       =form_for(@current_users_invitation) do |f|
         =f.hidden_field :status, :value => "declined"
         =f.submit "Decline"
