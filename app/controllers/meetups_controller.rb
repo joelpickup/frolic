@@ -17,7 +17,7 @@ class MeetupsController < ApplicationController
     @attending = @meetup.guests_that_are("accepted")
     @invited = @meetup.guests_that_are("invited")
     @declined = @meetup.guests_that_are("declined")
-    @date_options = @meetup.date_options
+    @date_options = @meetup.date_options.order(:date)
     @start_date = @date_options.min_by do |date_option| date_option.date end
     @end_date = @date_options.max_by do |date_option| date_option.date end
     @dates = @date_options.map{|date_option|date_option.date}
