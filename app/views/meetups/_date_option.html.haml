@@ -7,5 +7,6 @@
     =date_option.date.strftime("%e")
     %span.count=date_option.get_likes.count
     =form_for date_option, url: vote_date_option_path(date_option), remote: true, method: :post do |f|
-      =check_box_tag("name", value="", checked= false, options={})
+      =check_box_tag("name", value="", checked= true, options={}) if current_user.voted_for? date_option
+      =check_box_tag("name", value="", checked= false, options={}) if !current_user.voted_for? date_option
     
