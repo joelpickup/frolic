@@ -2,4 +2,4 @@
 
 frolic is a scheduling and events app, helping you to organise dates to meetup with your friends and giving you location-based event and venue suggestions.
 
-frolicapp.herokuapp.com
+http://frolicapp.herokuapp.com
