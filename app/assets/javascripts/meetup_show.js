@@ -95,10 +95,15 @@ google.maps.event.addListener(map, 'bounds_changed', function() {
 $(function(){
  myMap.mapCanvas = $('#map-canvas')[0];
  myMap.initialize();
- $('#suggestions_container').on("ajax:success", 'a', function(e,data,status,xhr){
+ $('.edit_date_option').on("click", "input", function(){
+  var form = $(this).parent();
+  form.submit();
+ });
+ $('.edit_date_option').on("ajax:success", function(e,data,status,xhr){
+  console.log(data);
   $(this).prev('.count').html(data);
  });
- $('#dates_container').on("ajax:success", 'a', function(e,data,status,xhr){
+ $('#suggestions_container').on("ajax:success", 'a', function(e,data,status,xhr){
   $(this).prev('.count').html(data);
  });
  var dateArrayStr = $('#array').html();

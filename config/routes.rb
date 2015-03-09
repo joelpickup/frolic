@@ -25,7 +25,7 @@ Rails.application.routes.draw do
  end
  resources :date_options do
   member do
-    get 'vote', to: 'votes#vote_date'
+    post 'vote', to: 'votes#vote_date'
   end
 end
  resources :meetups do

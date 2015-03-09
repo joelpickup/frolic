@@ -1,5 +1,11 @@
-=date_option.date
-%span.count=date_option.get_likes.count
-= link_to 'vote', vote_date_option_path(date_option), class: 'vote', remote: true
-= link_to 'delete', date_option_path(date_option), method: :delete, data: { confirm: 'Are you sure?' } if current_user == @meetup.superhost
-%br/
+.date_button
+  .date_button_title
+    =date_option.date.strftime("%b")
+  .date_button_content
+    =date_option.date.strftime("%a")
+    %br/
+    =date_option.date.strftime("%e")
+    %span.count=date_option.get_likes.count
+    =form_for date_option, url: vote_date_option_path(date_option), remote: true, method: :post do |f|
+      =check_box_tag("name", value="", checked= false, options={})
+    
